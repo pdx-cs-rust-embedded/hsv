@@ -1,3 +1,5 @@
+#![no_std]
+
 //! HSV to sRGB conversion.
 //!
 //! Thanks to Claude Code Opus 4.6 for this.
