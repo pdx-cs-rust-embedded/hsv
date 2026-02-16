@@ -4,16 +4,31 @@
 //!
 //! Thanks to Claude Code Opus 4.6 for this.
 
+/// HSV coordinates (with minimal semantics).
 #[derive(Clone, Copy)]
 pub struct Hsv {
+    /// Hue [0..1)
     pub h: f32,
+    /// Saturation [0..1]
     pub s: f32,
+    /// Value [0..1]
     pub v: f32,
+}
+
+/// RGB coordinates (with minimal semantics).
+#[derive(Clone, Copy)]
+pub struct Rgb {
+    /// Red [0..1]
+    pub r: f32,
+    /// Green [0..1]
+    pub g: f32,
+    /// Blue [0..1]
+    pub b: f32,
 }
 
 impl Hsv {
     /// Convert HSV to sRGB. H is a unit angle in [0..1).
-    pub fn to_rgb(self) -> (f32, f32, f32) {
+    pub fn to_rgb(self) -> Rgb {
         let c = self.s * self.v;
         let h6 = self.h * 6.0;
         let sector = h6 as u32;
@@ -35,6 +50,12 @@ impl Hsv {
             _ => (c, 0.0, x), // h >= 1.0 wraps
         };
 
-        (r1 + m, g1 + m, b1 + m)
+        Rgb { r: r1 + m, g: g1 + m, b: b1 + m }
+    }
+}
+
+impl From<Hsv> for Rgb {
+    fn from(value: Hsv) -> Self {
+        value.to_rgb()
     }
 }
