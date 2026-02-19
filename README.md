@@ -5,7 +5,7 @@ This is a quick mostly-auto-generated HSV to sRGB conversion
 function as a Rust library crate. Some prompting with Claude
 Opus 4.6 cleaned it up nicely.
 
-See the minimal Rustdoc for use.
+See the minimal [Rustdoc](https://pdx-cs-rust-embedded.github.io/hsv) for use.
 
 ## License
 
